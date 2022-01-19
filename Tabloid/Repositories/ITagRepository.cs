@@ -9,5 +9,6 @@ namespace Tabloid.Repositories
     public interface ITagRepository
     {
         List<Tag> GetAllTags();
+        void CreateTag(Tag tag);
     }
 }

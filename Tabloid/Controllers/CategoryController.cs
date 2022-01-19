@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Tabloid.Repositories;
+using Tabloid.Models;
 
 namespace Tabloid.Controllers
 {
@@ -16,75 +17,36 @@ namespace Tabloid.Controllers
             _categoryRepository = categoryRepository;
         }
 
-
+        // GET: api/<CategoryController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAllCategories()
         {
-            return Ok(_categoryRepository.GetAll());
+            var list = _categoryRepository.GetAllCategories();
+            return Ok(list);
         }
 
-
+        //GET: api/<CategoryController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public string Get(int id)
         {
-            var category = _categoryRepository.GetById(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            return Ok(category);
+            return "value";
         }
 
+        // POST api/<CategoryController>
+        [HttpPost]
+        public IActionResult AddCategory(Category category)
+        {
+            _categoryRepository.CreateCategory(category);
+            return CreatedAtAction("Get", new { id = category.Id }, category);
+        }
 
-        //[HttpGet("GetWithComments")]
-        //public IActionResult GetWithComments()
-        //{
-        //    var categorys = _categoryRepository.GetAllWithComments();
-        //    return Ok(categorys);
-        //}
+        // PUT api/<CategoryController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
 
-
-        //[HttpPost]
-        //public IActionResult Post(Category category)
-        //{
-        //    _categoryRepository.Add(category);
-        //    return CreatedAtAction("Get", new { id = category.Id }, category);
-        //}
-
-
-        //[HttpPut("{id}")]
-        //public IActionResult Put(int id, Category category)
-        //{
-        //    if (id != category.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _categoryRepository.Update(category);
-        //    return NoContent();
-        //}
-
-
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-        //    _categoryRepository.Delete(id);
-        //    return NoContent();
-        //}
-
-
-        //[HttpGet("search")]
-        //public IActionResult Search(string q, bool sortDesc)
-        //{
-        //    return Ok(_categoryRepository.Search(q, sortDesc));
-        //}
-
-
-        //[HttpGet("hottest")]
-        //public IActionResult SearchByDate(string since)
-        //{
-        //    return Ok(_categoryRepository.SearchByDate(since));
-        //}
+        
 
 
     }

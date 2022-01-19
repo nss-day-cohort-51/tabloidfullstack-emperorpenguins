@@ -12,7 +12,7 @@ namespace Tabloid.Repositories
     {
         public CategoryRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Category> GetAll()
+        public List<Category> GetAllCategories()
         {
             using (var conn = Connection)
             {
@@ -47,7 +47,7 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"";
+                    cmd.CommandText = "SELECT Id, [Name] from Category WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
@@ -55,7 +55,14 @@ namespace Tabloid.Repositories
                     {
 
                         Category category = null;
-                        
+                        if (reader.Read())
+                        {
+                            category = new Category
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "Name")
+                            };
+                        }
 
                         return category;
                     }
@@ -63,6 +70,23 @@ namespace Tabloid.Repositories
             }
         }
 
+        public void CreateCategory(Category category)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        INSERT INTO Category (Name) 
+                                        VALUES (@Name)";
+                    cmd.Parameters.AddWithValue("@Name", category.Name);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         
+
+
     }
 }

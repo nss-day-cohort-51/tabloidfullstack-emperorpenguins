@@ -6,8 +6,9 @@ namespace Tabloid.Repositories
 {
     public interface ICategoryRepository
     {
-       List<Category> GetAll();
-       Category GetById(int id);    
+       List<Category> GetAllCategories();
+       Category GetById(int id);
+       void CreateCategory(Category category);
         
     }
 }

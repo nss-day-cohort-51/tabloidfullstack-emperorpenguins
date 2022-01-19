@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { addPost } from "../../modules/postManager";
 import { Button, Form, Label, Input, FormGroup } from "reactstrap";
-import { getPublishedCategories } from "../../modules/CategoryManager";
+import { getAllCategories } from "../../modules/CategoryManager";
 
 
 const PostForm = () => {
@@ -36,7 +36,7 @@ const PostForm = () => {
     }
 
     useEffect(() => {
-        getPublishedCategories()
+        getAllCategories()
             .then(res => {
                 setCategories(res)
                 setState({})

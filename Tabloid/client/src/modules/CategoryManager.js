@@ -7,7 +7,7 @@ export const getPublishedCategories = () => {
         return fetch(apiUrl, {
             method: "GET",
             headers: {
-                Authorization: `Bearer${token}`
+                Authorization: `Bearer ${token}`
             }
         }).then(resp => {
             if (resp.ok) {

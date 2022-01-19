@@ -7,7 +7,7 @@ export const getPublishedPosts = () => {
         return fetch(apiUrl, {
             method: "GET",
             headers: {
-                Authorization: `Bearer${token}`
+                Authorization: `Bearer ${token}`
             }
         }).then(resp => {
             if (resp.ok) {
@@ -16,5 +16,17 @@ export const getPublishedPosts = () => {
                 throw new Error("An unknown error occurred while trying to get Posts.");
             }
         })
+    })
+}
+
+export const getPostById = (id) => {
+    return getToken().then(token => {
+        return fetch(`${apiUrl}/${id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(res => res.json())
     })
 }

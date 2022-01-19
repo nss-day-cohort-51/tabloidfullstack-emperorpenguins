@@ -18,6 +18,7 @@ export const PostDetails = () => {
 
     return (
         <div className="postDetailsCard">
+            <h2>Post Details</h2>
             < Card >
                 <CardHeader>
                     <strong>Title: {post.title}</strong>

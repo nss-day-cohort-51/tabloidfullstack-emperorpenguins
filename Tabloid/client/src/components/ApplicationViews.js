@@ -20,11 +20,11 @@ export default function ApplicationViews({ isLoggedIn }) {
           <TagList />
         </Route>
 
-        <Route path="/posts">
-          <PostList />
+        <Route exact path="/posts" >
+          {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/details/:id">
+        <Route path="/posts/details/:id">
           <PostDetails />
         </Route >
 

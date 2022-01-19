@@ -22,10 +22,11 @@ export const getAllTags = () => {
 
       export const addTag = (newTag) => {
         return getToken().then((token) => {
-        return fetch(`${_apiUrl}`, {
+        return fetch(_apiUrl, {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(newTag)
         }).then((res) => {

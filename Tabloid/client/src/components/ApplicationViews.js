@@ -5,6 +5,7 @@ import Register from "./Register";
 import Hello from "./Hello";
 import PostList from "./Posts/PostList";
 import TagList from "./TagList";
+import CategoryList from "./Category/CategoryList";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -20,6 +21,10 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="/posts">
           <PostList />
+        </Route>
+
+        <Route path="/category">
+          <CategoryList />
         </Route>
 
         <Route path="/login">

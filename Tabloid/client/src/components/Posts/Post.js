@@ -1,9 +1,11 @@
 import React from "react";
-import { Card, CardBody, CardHeader } from "reactstrap";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Button, Card, CardBody, CardHeader } from "reactstrap";
 import "./Post.css"
 
 
 export default function Post({ post }) {
+    const history = useHistory();
     if (post.isApproved = true && post.publishDateTime < Date()) {
         return (
             <div className="postCard">
@@ -13,8 +15,9 @@ export default function Post({ post }) {
                     </CardHeader>
                     <CardBody>
                         Author: {post.userProfile.displayName} <br></br>
-                        Category:
+                        Category: {post.category.name}
                     </CardBody>
+                    <Button onClick={() => history.push(`/posts/details/${post.id}`)}>Read Post</Button>
                 </Card>
             </div >
         )

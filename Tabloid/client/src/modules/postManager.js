@@ -18,3 +18,8 @@ export const getPublishedPosts = () => {
         })
     })
 }
+
+export const getPostById = (id) => {
+    return fetch(`${apiUrl}/${id}`)
+        .then(res => res.json())
+}

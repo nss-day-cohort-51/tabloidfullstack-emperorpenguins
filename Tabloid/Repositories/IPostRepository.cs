@@ -8,7 +8,7 @@ namespace Tabloid.Repositories
         void AddPost(Post post);
         void DeletePost(int postId);
         List<Post> GetAllPublishedPosts();
-        List<Post> GetCurrentUsersPostsById(int id);
+        List<Post> GetCurrentUsersPostsByFirebaseId(string firebaseUserId);
         Post GetPublishedPostById(int id);
         Post GetUserPostById(int id, int userProfileId);
         void UpdatePost(Post post);

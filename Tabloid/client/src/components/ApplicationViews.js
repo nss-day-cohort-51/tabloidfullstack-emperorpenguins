@@ -11,7 +11,8 @@ import { PostDetails } from "./Posts/PostDetails";
 import CategoryList from "./Category/CategoryList";
 import { EditTagForm } from "./Tags/EditTagForm";
 import PostForm from "./Posts/PostForm";
-import AddCategoryForm from "./Category/AddCategoryForm";
+import AddCategory from "./Category/AddCategory";
+import { EditCategory } from "./Category/EditCategory";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -47,7 +48,10 @@ export default function ApplicationViews({ isLoggedIn }) {
           <CategoryList />
         </Route>
         <Route path="/category/create/">
-          <AddCategoryForm />
+          <AddCategory />
+        </Route>
+        <Route path="/category/:categoryId(\d+)/edit">
+          <EditCategory />
         </Route>
 
         <Route path="/login">

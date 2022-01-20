@@ -17,7 +17,10 @@ const Category = ({ category }) => {
                         flexDirection: "column"
                     }}>
                         <strong>Name: {category.name}</strong>
-                        <button className="button" type="button" style={{ width: "50px" }} onClick={() => history.push(`/category/${category.id}/edit`)}> Edit </button>
+                        <p style={{ display: "flex", flexDirection: "row" }}>
+                            <button className="button" type="button" style={{ width: "50px" }} onClick={() => history.push(`/category/${category.id}/edit`)}> Edit </button>
+                            <button className="button" type="button" style={{ width: "100px", color: "red" }} onClick={() => { history.push(`/category/delete/${category.id}`) }}> Delete </button>
+                        </p>
                     </p>
                 </CardBody>
             </Card>

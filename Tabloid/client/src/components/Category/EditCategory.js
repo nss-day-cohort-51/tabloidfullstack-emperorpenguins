@@ -19,14 +19,23 @@ export const EditCategory = () => {
         event.preventDefault()
         setIsLoading(true);
 
-        const editedCategory = {
-            id: categoryId,
-            name: category.name
+        if (event.value) {
+
+            const editedCategory = {
+                id: categoryId,
+                name: category.name
+            }
+            updateCategory(editedCategory)
+                .then(() => history.push("/category")
+                )
+        }
+        else {
+            alert("No Value detected.");
+            cancelAndGoBack();
         };
-        updateCategory(editedCategory)
-            .then(() => history.push("/category")
-            )
     }
+
+    const cancelAndGoBack = () => history.push("/category");
 
     useEffect(() => {
         getCategoryById(categoryId)
@@ -43,8 +52,9 @@ export const EditCategory = () => {
                     <h2 className="categoryForm__title">Edit Category</h2>
                     <div className="formgroup">
                         <label htmlFor="name"> Category </label>
-                        <input type="text" required className="form-control" onChange={handleFieldChange} id="name" value={category.name} />
+                        <input type="text" required className="form-control" onChange={handleFieldChange} id="name" value={category.name} placeholder={"Enter a new Value"} />
                         <button type="button" disabled={isLoading} onClick={updateExistingCategory} className="button"> Submit </button>
+                        <button type="button" disabled={isLoading} onClick={cancelAndGoBack} className="button"> Cancel </button>
                     </div>
 
                 </fieldset>

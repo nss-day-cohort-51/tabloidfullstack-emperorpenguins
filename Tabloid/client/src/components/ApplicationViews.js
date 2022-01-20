@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
+import { UserProfiles } from "./userProfile/UserProfiles";
 import PostList from "./Posts/PostList";
 import TagList from "./Tags/TagList";
 import AddTagForm from "./Tags/AddTagForm";
@@ -12,6 +13,9 @@ import { EditTagForm } from "./Tags/EditTagForm";
 import PostForm from "./Posts/PostForm";
 import AddCategoryForm from "./Category/AddCategoryForm";
 import DeleteTagForm from "./Tags/DeleteTagForm";
+import AddCategory from "./Category/AddCategory";
+import { EditCategory } from "./Category/EditCategory";
+
 export default function ApplicationViews({ isLoggedIn }) {
 
   return (
@@ -33,8 +37,12 @@ export default function ApplicationViews({ isLoggedIn }) {
           <DeleteTagForm />
         </Route>
 
+        <Route exact path="/myposts" >
+          {isLoggedIn ? <PostList allPosts={false} /> : <Redirect to="/login" />}
+        </Route>
+
         <Route exact path="/post" >
-          {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
+          {isLoggedIn ? <PostList allPosts={true} /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/post/details/:id">
@@ -49,11 +57,18 @@ export default function ApplicationViews({ isLoggedIn }) {
           <CategoryList />
         </Route>
         <Route path="/category/create/">
-          <AddCategoryForm />
+          <AddCategory />
+        </Route>
+        <Route path="/category/:categoryId(\d+)/edit">
+          <EditCategory />
         </Route>
 
         <Route path="/login">
           <Login />
+        </Route>
+
+        <Route path="/userprofiles">
+          <UserProfiles />
         </Route>
 
         <Route path="/register">

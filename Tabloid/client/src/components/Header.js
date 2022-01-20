@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
   Collapse,
@@ -9,15 +10,20 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
-import { logout } from '../modules/authManager';
+import { logout, _getUserData } from '../modules/authManager';
 
 export default function Header({ isLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState("");
   const toggle = () => setIsOpen(!isOpen);
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      _getUserData().then(res => setIsAdmin(res.userType.name))
+    }
+  }, [isLoggedIn])
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="light" light expand="md">c
         <NavbarBrand tag={RRNavLink} to="/">Tabloid</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -33,7 +39,12 @@ export default function Header({ isLoggedIn }) {
             { /* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn &&
               <NavItem>
-                <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
+                <NavLink tag={RRNavLink} to="/post">All Posts</NavLink>
+              </NavItem>
+            }
+            {isLoggedIn &&
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/myposts">My Posts</NavLink>
               </NavItem>
             }
             {isLoggedIn &&
@@ -45,6 +56,11 @@ export default function Header({ isLoggedIn }) {
             {isLoggedIn &&
               <NavItem>
                 <NavLink tag={RRNavLink} to="/category">Categories</NavLink>
+              </NavItem>
+            }
+            {isAdmin === "Admin" &&
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/userprofiles">User Profiles</NavLink>
               </NavItem>
             }
           </Nav>

@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using Tabloid.Models;
 using Tabloid.Repositories;
+using System.Linq;
+using System.Security.Claims;
+using System.Collections.Generic;
 
 namespace Tabloid.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserProfileController : ControllerBase
     {
         private readonly IUserProfileRepository _userProfileRepository;
@@ -15,10 +20,17 @@ namespace Tabloid.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
-        [HttpGet("{firebaseUserId}")]
-        public IActionResult GetUserProfile(string firebaseUserId)
+        [HttpGet]
+        public IActionResult GetUserProfile()
         {
-            return Ok(_userProfileRepository.GetByFirebaseUserId(firebaseUserId));
+            var claim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            return Ok(_userProfileRepository.GetByFirebaseUserId(claim));
+        }
+        [HttpGet("GetAllProfiles")]
+        public IActionResult GetAllProfiles()
+        {
+            List<UserProfile> profiles = _userProfileRepository.GetAllProfiles();
+            return Ok(profiles);
         }
 
         [HttpGet("DoesUserExist/{firebaseUserId}")]

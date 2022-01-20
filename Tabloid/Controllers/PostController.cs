@@ -15,6 +15,7 @@ namespace Tabloid.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PostController : ControllerBase
     {
         private readonly IPostRepository _postRepo;
@@ -30,7 +31,12 @@ namespace Tabloid.Controllers
         {
             return Ok(_postRepo.GetAllPublishedPosts());
         }
-
+        [HttpGet("userposts")]
+        public IActionResult GetUserPosts()
+        {
+            var claim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            return Ok(_postRepo.GetCurrentUsersPostsByFirebaseId(claim));
+        }
         // GET api/<PostController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)

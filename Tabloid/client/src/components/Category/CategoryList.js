@@ -8,7 +8,8 @@ const CategoryList = () => {
     const history = useHistory();
 
     const getCategories = () => {
-        getAllCategories().then(categories => setCategories(categories));
+        getAllCategories()
+            .then(categories => setCategories(categories));
     };
 
     useEffect(() => {

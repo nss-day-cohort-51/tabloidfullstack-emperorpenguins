@@ -18,21 +18,13 @@ export const EditCategory = () => {
     const updateExistingCategory = event => {
         event.preventDefault()
         setIsLoading(true);
-
-        if (event.value) {
-
-            const editedCategory = {
-                id: categoryId,
-                name: category.name
-            }
-            updateCategory(editedCategory)
-                .then(() => history.push("/category")
-                )
+        const editedCategory = {
+            id: categoryId,
+            name: category.name
         }
-        else {
-            alert("No Value detected.");
-            cancelAndGoBack();
-        };
+        updateCategory(editedCategory)
+            .then(() => history.push("/category")
+            )
     }
 
     const cancelAndGoBack = () => history.push("/category");

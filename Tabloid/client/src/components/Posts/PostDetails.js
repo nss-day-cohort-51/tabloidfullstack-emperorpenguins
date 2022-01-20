@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getPostById } from "../../modules/postManager";
 import { Card, CardHeader, CardBody, CardFooter, CardImg } from "reactstrap";
 
@@ -7,6 +7,7 @@ import { Card, CardHeader, CardBody, CardFooter, CardImg } from "reactstrap";
 export const PostDetails = () => {
     const [post, setPost] = useState();
     const { id } = useParams();
+    const history = useHistory();
 
     useEffect(() => {
         getPostById(id).then(setPost)
@@ -37,6 +38,7 @@ export const PostDetails = () => {
                     </br>
 
                     Author: {post.userProfile.displayName}
+                    <button className="button" type="button" onClick={() => history.push(`/post/${post.id}/edit`)}>Edit</button>
                 </CardFooter>
             </Card>
         </div >

@@ -23,7 +23,7 @@ export default function Header({ isLoggedIn }) {
   }, [isLoggedIn])
   return (
     <div>
-      <Navbar color="light" light expand="md">c
+      <Navbar color="light" light expand="md">
         <NavbarBrand tag={RRNavLink} to="/">Tabloid</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

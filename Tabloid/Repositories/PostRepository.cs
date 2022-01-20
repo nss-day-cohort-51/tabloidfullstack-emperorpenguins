@@ -204,6 +204,8 @@ namespace Tabloid.Repositories
                     cmd.Parameters.AddWithValue("@categoryId", post.CategoryId);
                     cmd.Parameters.AddWithValue("@id", post.Id);
 
+
+
                     if (string.IsNullOrWhiteSpace(post.ImageLocation))
                     {
                         cmd.Parameters.AddWithValue("@imageLocation", DBNull.Value);

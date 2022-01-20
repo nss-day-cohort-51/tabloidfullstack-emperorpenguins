@@ -58,18 +58,31 @@ export const updateCategory = (editedCategory) => {
             },
             body: JSON.stringify(editedCategory)
         }).then((res) => {
-            debugger;
-            // if (!res.ok) {
-            //     throw new Error("An unknown error occurred while trying to get Categories.");
-            // }
-            // else {
-            //     return
-            // }
             if (res.ok) {
                 return
             }
             else {
                 throw new Error("An unknown error occurred while trying to get Categories.");
+            }
+        });
+    });
+};
+
+
+export const deleteCategory = (category) => {
+    return getToken().then((token) => {
+        return fetch(`${apiUrl}/${category}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(category)
+        }).then((res) => {
+            if (res.ok) {
+                return
+            } else {
+                throw new Error("An unknown error occurred while trying to get categorys.");
             }
         });
     });

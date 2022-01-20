@@ -38,3 +38,27 @@ export const getAllTags = () => {
         });
       });
     };
+
+    export const getTagById = (tagId) => {
+      return fetch(`${_apiUrl}/${tagId}`)
+      .then(res => res.json())
+  }
+
+    export const update = (editedTag) => {
+      return getToken().then((token) => {
+      return fetch(`${_apiUrl}/${editedTag.id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editedTag)
+      }).then((res) => {
+        if (res.ok) {
+          return 
+        } else {
+          throw new Error("An unknown error occurred while trying to get tags.");
+        }
+      });
+    });
+  };

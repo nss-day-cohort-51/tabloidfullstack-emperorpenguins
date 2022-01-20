@@ -12,5 +12,6 @@ namespace Tabloid.Repositories
         Tag GetTagById(int id);
         void CreateTag(Tag tag);
         void Update(Tag tag);
+        void Delete(int id);
     }
 }

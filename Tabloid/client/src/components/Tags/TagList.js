@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Tag from './Tag';
+import DeleteTagForm from "./DeleteTagForm";
 import { useHistory } from "react-router";
-import { getAllTags } from "../../modules/tagManager";
+import { getAllTags, deleteTag } from "../../modules/tagManager";
 
 const TagList = () => {
   const [tags, setTags] = useState([]);
@@ -9,6 +10,8 @@ const TagList = () => {
   const getTags = () => {
     getAllTags().then(tags => setTags(tags));
   };
+
+ 
 
   useEffect(() => {
     getTags();

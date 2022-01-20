@@ -11,6 +11,8 @@ import { PostDetails } from "./Posts/PostDetails";
 import CategoryList from "./Category/CategoryList";
 import { EditTagForm } from "./Tags/EditTagForm";
 import PostForm from "./Posts/PostForm";
+import AddCategoryForm from "./Category/AddCategoryForm";
+import DeleteTagForm from "./Tags/DeleteTagForm";
 import AddCategory from "./Category/AddCategory";
 import { EditCategory } from "./Category/EditCategory";
 
@@ -30,6 +32,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/Tag/:tagId(\d+)/edit">
           <EditTagForm />
+        </Route>
+        <Route path="/Tag/delete/:tagId(\d+)">
+          <DeleteTagForm />
         </Route>
 
         <Route exact path="/myposts" >

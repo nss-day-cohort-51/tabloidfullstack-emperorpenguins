@@ -62,3 +62,22 @@ export const getAllTags = () => {
       });
     });
   };
+
+  export const deleteTag = (tag) => {
+    return getToken().then((token) => {
+    return fetch(`${_apiUrl}/${tag}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(tag)
+    }).then((res) => {
+      if (res.ok) {
+        return
+      } else {
+        throw new Error("An unknown error occurred while trying to get tags.");
+      }
+    });
+  });
+  };

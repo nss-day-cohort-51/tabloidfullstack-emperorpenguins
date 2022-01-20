@@ -17,7 +17,7 @@ export default function Post({ post }) {
                         Author: {post.userProfile.displayName} <br></br>
                         Category: {post.category.name}
                     </CardBody>
-                    <Button onClick={() => history.push(`/posts/details/${post.id}`)}>Read Post</Button>
+                    <Button onClick={() => history.push(`/post/details/${post.id}`)}>Read Post</Button>
                 </Card>
             </div >
         )

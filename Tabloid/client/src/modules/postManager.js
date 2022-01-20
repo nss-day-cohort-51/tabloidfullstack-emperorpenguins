@@ -30,3 +30,22 @@ export const getPostById = (id) => {
             .then(res => res.json())
     })
 }
+
+export const addPost = (newPost) => {
+    return getToken().then((token) => {
+        return fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newPost)
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error("An unknown error occurred while trying to get posts.");
+            }
+        });
+    });
+};

@@ -55,7 +55,7 @@ export const getAllTags = () => {
         body: JSON.stringify(editedTag)
       }).then((res) => {
         if (res.ok) {
-          return res.json();
+          return 
         } else {
           throw new Error("An unknown error occurred while trying to get tags.");
         }

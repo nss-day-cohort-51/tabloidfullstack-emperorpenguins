@@ -218,7 +218,7 @@ namespace Tabloid.Repositories
             }
         }
 
-        public List<Post> GetCurrentUsersPostsById(int id)
+        public List<Post> GetCurrentUsersPostsByFirebaseId(string firebaseUserId)
         {
             using (var conn = Connection)
             {
@@ -231,7 +231,7 @@ namespace Tabloid.Repositories
                               p.CreateDateTime, p.PublishDateTime, p.IsApproved,
                               p.CategoryId, p.UserProfileId,
                               c.[Name] AS CategoryName,
-                              u.FirstName, u.LastName, u.DisplayName, 
+                              u.FirstName, u.LastName, u.DisplayName, u.FirebaseUserId, 
                               u.Email, u.CreateDateTime, u.ImageLocation AS AvatarImage,
                               u.UserTypeId, 
                               ut.[Name] AS UserTypeName
@@ -239,9 +239,9 @@ namespace Tabloid.Repositories
                               LEFT JOIN Category c ON p.CategoryId = c.id
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
                               LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                        WHERE p.UserProfileId = @Id";
+                        WHERE u.FirebaseUserId = @Id";
 
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@id", firebaseUserId);
                     var reader = cmd.ExecuteReader();
 
                     List<Post> posts = new List<Post>();

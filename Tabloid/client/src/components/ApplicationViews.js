@@ -31,8 +31,12 @@ export default function ApplicationViews({ isLoggedIn }) {
           <EditTagForm />
         </Route>
 
+        <Route exact path="/myposts" >
+          {isLoggedIn ? <PostList allPosts={false} /> : <Redirect to="/login" />}
+        </Route>
+
         <Route exact path="/post" >
-          {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
+          {isLoggedIn ? <PostList allPosts={true} /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/post/details/:id">

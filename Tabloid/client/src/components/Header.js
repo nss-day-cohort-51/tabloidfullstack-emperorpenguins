@@ -39,7 +39,12 @@ export default function Header({ isLoggedIn }) {
             { /* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn &&
               <NavItem>
-                <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
+                <NavLink tag={RRNavLink} to="/post">All Posts</NavLink>
+              </NavItem>
+            }
+            {isLoggedIn &&
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/myposts">My Posts</NavLink>
               </NavItem>
             }
             {isLoggedIn &&

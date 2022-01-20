@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
-import { getPublishedPosts } from "../../modules/postManager";
+import { getPublishedPosts, getUserPosts } from "../../modules/postManager";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function PostList() {
+export default function PostList({ allPosts }) {
     const [posts, setPosts] = useState([])
 
     const history = useHistory();
 
     useEffect(() => {
-        getPublishedPosts().then(setPosts)
-    }, [])
+        if (allPosts) {
+            getPublishedPosts().then(setPosts)
+        } else {
+            getUserPosts().then(setPosts)
+        }
+    }, [allPosts])
 
     return (
         <section className="postList">
-            <h1>Post List</h1>
+            {allPosts === true ? <h1>All Posts</h1> : <h1>Your Posts</h1>}
             <button type="button"
                 className="button"
                 onClick={() => { history.push("/post/create") }}>

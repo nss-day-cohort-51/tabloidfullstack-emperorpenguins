@@ -17,12 +17,15 @@ export const PostDetails = () => {
         return null
     }
 
+
+
     return (
         <div className="postDetailsCard">
             <h2>Post Details</h2>
             < Card >
                 <CardHeader>
-                    <strong>Title: {post.title}</strong>
+                    <strong>Title: {post.title}</strong><br></br><br></br>
+                    <strong>Estimated Read Time:</strong> {post.estimatedReadTime}
                 </CardHeader>
                 {post.imageLocation ?
                     <CardImg src={post.imageLocation}>

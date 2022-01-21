@@ -172,11 +172,13 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                                         DELETE FROM Post
+                                        
                                         WHERE Id = @id
                                        ";
                     cmd.Parameters.AddWithValue("@id", postId);
 
                     cmd.ExecuteNonQuery();
+
                 }
             }
         }

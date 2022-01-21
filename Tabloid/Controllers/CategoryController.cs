@@ -42,11 +42,24 @@ namespace Tabloid.Controllers
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, Category category)
         {
+            if (id != category.Id)
+            {
+                return BadRequest();
+            }
+
+            _categoryRepository.EditCategory(category);
+            return NoContent();
         }
 
-        
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _categoryRepository.DeleteCategory(id);
+            return NoContent();
+        }
 
 
     }

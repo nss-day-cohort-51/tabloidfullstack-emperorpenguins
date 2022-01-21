@@ -156,7 +156,7 @@ namespace Tabloid.Repositories
                     cmd.Parameters.AddWithValue("@IsApproved", post.IsApproved);
                     cmd.Parameters.AddWithValue("@CategoryId", post.CategoryId);
                     cmd.Parameters.AddWithValue("@UserProfileId", post.UserProfileId);
-
+                                        
                     post.Id = (int)cmd.ExecuteScalar();
                 }
             }
@@ -172,11 +172,13 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                                         DELETE FROM Post
+                                        
                                         WHERE Id = @id
                                        ";
                     cmd.Parameters.AddWithValue("@id", postId);
 
                     cmd.ExecuteNonQuery();
+
                 }
             }
         }
@@ -203,6 +205,8 @@ namespace Tabloid.Repositories
                     cmd.Parameters.AddWithValue("@publishDateTime", post.PublishDateTime);
                     cmd.Parameters.AddWithValue("@categoryId", post.CategoryId);
                     cmd.Parameters.AddWithValue("@id", post.Id);
+
+
 
                     if (string.IsNullOrWhiteSpace(post.ImageLocation))
                     {

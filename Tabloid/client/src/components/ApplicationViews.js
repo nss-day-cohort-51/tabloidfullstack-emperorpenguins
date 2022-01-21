@@ -13,6 +13,12 @@ import { EditTagForm } from "./Tags/EditTagForm";
 import PostForm from "./Posts/PostForm";
 import AddCategoryForm from "./Category/AddCategoryForm";
 import { CommentsList } from "./Comments/CommentsList";
+import DeleteTagForm from "./Tags/DeleteTagForm";
+import AddCategory from "./Category/AddCategory";
+import { EditCategory } from "./Category/EditCategory";
+import { EditPostForm } from "./Posts/EditPostForm";
+import DeleteCategory from "./Category/DeleteCategory";
+import DeletePostForm from "./Posts/DeletePostForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -31,42 +37,48 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/Tag/:tagId(\d+)/edit">
           <EditTagForm />
         </Route>
-
+        <Route path="/Tag/delete/:tagId(\d+)">
+          <DeleteTagForm />
+        </Route>
         <Route exact path="/myposts" >
           {isLoggedIn ? <PostList allPosts={false} /> : <Redirect to="/login" />}
         </Route>
-
         <Route exact path="/post" >
           {isLoggedIn ? <PostList allPosts={true} /> : <Redirect to="/login" />}
         </Route>
-
         <Route path="/post/details/:id">
           <PostDetails />
         </Route>
-
         <Route path="/comments/:id">
           <CommentsList />
         </Route>
-
         <Route path="/post/create">
           <PostForm />
         </Route>
-
+        <Route path="/post/:postId(\d+)/edit">
+          <EditPostForm />
+        </Route>
+        <Route path="/post/delete/:postId(\d+)">
+          <DeletePostForm />
+        </Route>
         <Route path="/category" exact>
           <CategoryList />
         </Route>
         <Route path="/category/create/">
-          <AddCategoryForm />
+          <AddCategory />
         </Route>
-
+        <Route path="/category/:categoryId(\d+)/edit">
+          <EditCategory />
+        </Route>
+        <Route path="/category/delete/:categoryId(\d+)">
+          <DeleteCategory />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
-
         <Route path="/userprofiles">
           <UserProfiles />
         </Route>
-
         <Route path="/register">
           <Register />
         </Route>

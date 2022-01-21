@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import { addCategory } from '../../modules/CategoryManager';
 
 
-const AddCategoryForm = () => {
+const AddCategory = () => {
     const [category, setCategory] = useState({
         name: ""
     });
@@ -41,4 +41,4 @@ const AddCategoryForm = () => {
     )
 };
 
-export default AddCategoryForm;
+export default AddCategory;

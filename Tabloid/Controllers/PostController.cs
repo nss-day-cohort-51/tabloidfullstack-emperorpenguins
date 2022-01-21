@@ -46,7 +46,6 @@ namespace Tabloid.Controllers
             {
                 return NotFound();
             }
-
             return Ok(post);
         }
 

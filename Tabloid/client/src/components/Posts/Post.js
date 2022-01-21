@@ -9,7 +9,7 @@ export default function Post({ post }) {
     if (post.isApproved = true && post.publishDateTime < Date()) {
         return (
             <div className="postCard">
-                < Card >
+                <Card>
                     <CardHeader>
                         <strong>Title: {post.title}</strong>
                     </CardHeader>

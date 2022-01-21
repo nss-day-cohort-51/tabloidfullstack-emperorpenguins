@@ -12,6 +12,7 @@ import CategoryList from "./Category/CategoryList";
 import { EditTagForm } from "./Tags/EditTagForm";
 import PostForm from "./Posts/PostForm";
 import AddCategoryForm from "./Category/AddCategoryForm";
+import { CommentsList } from "./Comments/CommentsList";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -41,7 +42,11 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="/post/details/:id">
           <PostDetails />
-        </Route >
+        </Route>
+
+        <Route path="/comments/:id">
+          <CommentsList />
+        </Route>
 
         <Route path="/post/create">
           <PostForm />

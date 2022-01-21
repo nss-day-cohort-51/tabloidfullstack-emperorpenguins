@@ -36,5 +36,22 @@ namespace Tabloid.Models
         [DisplayName("Author")]
         public int UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
+
+        public string EstimatedReadTime
+        {
+            get
+            {
+                int wordCount = Title.Split(' ').Length + Content.Split(' ').Length;
+                decimal time = Math.Ceiling(wordCount / 60m);
+                if (time > 1)
+                {
+                    return $"{time} minutes";
+                }
+                else
+                {
+                    return $"{time} minute";
+                }
+            }
+        }
     }
 }

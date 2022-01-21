@@ -156,7 +156,7 @@ namespace Tabloid.Repositories
                     cmd.Parameters.AddWithValue("@IsApproved", post.IsApproved);
                     cmd.Parameters.AddWithValue("@CategoryId", post.CategoryId);
                     cmd.Parameters.AddWithValue("@UserProfileId", post.UserProfileId);
-
+                                        
                     post.Id = (int)cmd.ExecuteScalar();
                 }
             }

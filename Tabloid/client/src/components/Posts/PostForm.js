@@ -71,6 +71,9 @@ const PostForm = () => {
                 <Input type="datetime-local" id="publishDateTime" onChange={handleControlledInputChange} value={post.publishDateTime} />
             </FormGroup>
             <Button className="btn btn-primary" onClick={handleClickSavePost}>Save post</Button>
+
+
+
         </Form>
     )
 };

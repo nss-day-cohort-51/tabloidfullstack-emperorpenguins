@@ -16,6 +16,7 @@ import AddCategory from "./Category/AddCategory";
 import { EditCategory } from "./Category/EditCategory";
 import { EditPostForm } from "./Posts/EditPostForm";
 import DeleteCategory from "./Category/DeleteCategory";
+import DeletePostForm from "./Posts/DeletePostForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -55,6 +56,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/post/:postId(\d+)/edit">
           <EditPostForm />
+        </Route>
+        <Route path="/post/delete/:postId(\d+)">
+          <DeletePostForm />
         </Route>
 
 

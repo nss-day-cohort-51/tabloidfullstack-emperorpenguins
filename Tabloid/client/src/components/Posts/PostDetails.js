@@ -42,6 +42,7 @@ export const PostDetails = () => {
 
                     Author: {post.userProfile.displayName}
                     <button className="button" type="button" onClick={() => history.push(`/post/${post.id}/edit`)}>Edit</button>
+                    <button className="button"type="button" onClick={() => {history.push( `/post/delete/${post.id}`)}}>Delete</button>
                 </CardFooter>
             </Card>
         </div >

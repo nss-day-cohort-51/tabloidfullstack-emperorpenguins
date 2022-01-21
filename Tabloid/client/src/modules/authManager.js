@@ -22,13 +22,13 @@ const _saveUser = (userProfile) => {
     }).then(resp => resp.json()));
 };
 export const _getUserData = () => {
-  return getToken().then((token) =>
-    fetch(`${_apiUrl}`, {
+  return getToken().then((token) =>{
+    return fetch(`${_apiUrl}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }).then(resp => resp.json()));
+    }).then(resp => resp.json())});
 }
 export const getToken = () => firebase.auth().currentUser.getIdToken();
 export const login = (email, pw) => {

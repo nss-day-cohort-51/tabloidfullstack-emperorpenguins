@@ -84,5 +84,27 @@ export const update = (editedPost) => {
             }
         });
     });
-};
+  };
+
+
+export const deletePost = (post) => {
+    return getToken().then((token) => {
+      return fetch(`${apiUrl}/${post}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(post)
+      }).then((res) => {
+        if (res.ok) {
+          return
+        } else {
+          throw new Error("An unknown error occurred while trying to get posts.");
+        }
+      });
+    });
+  };
+  
+
 

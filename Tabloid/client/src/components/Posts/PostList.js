@@ -9,7 +9,7 @@ export default function PostList({ allPosts }) {
     const history = useHistory();
 
     useEffect(() => {
-        if (allPosts) {
+        if (allPosts === true) {
             getPublishedPosts().then(setPosts)
         } else {
             getUserPosts().then(setPosts)
@@ -24,7 +24,7 @@ export default function PostList({ allPosts }) {
                 onClick={() => { history.push("/post/create") }}>
                 Add Post
             </button>
-            {posts.map(p => <Post key={p.id} post={p} />)}
+            {posts.length > 0 ? posts.map(p => <Post key={p.id} post={p} />) : <h4>You don't have any posts.</h4>}
         </section>
     )
 }

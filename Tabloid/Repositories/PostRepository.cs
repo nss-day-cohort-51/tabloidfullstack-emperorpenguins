@@ -243,7 +243,8 @@ namespace Tabloid.Repositories
                               LEFT JOIN Category c ON p.CategoryId = c.id
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
                               LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                        WHERE u.FirebaseUserId = @Id";
+                        WHERE u.FirebaseUserId = @Id AND IsApproved = 1 AND PublishDateTime < SYSDATETIME()
+                        ORDER BY p.PublishDateTime DESC";
 
                     cmd.Parameters.AddWithValue("@id", firebaseUserId);
                     var reader = cmd.ExecuteReader();

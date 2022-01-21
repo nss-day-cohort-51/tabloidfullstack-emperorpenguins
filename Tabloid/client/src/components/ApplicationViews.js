@@ -11,6 +11,8 @@ import { PostDetails } from "./Posts/PostDetails";
 import CategoryList from "./Category/CategoryList";
 import { EditTagForm } from "./Tags/EditTagForm";
 import PostForm from "./Posts/PostForm";
+import AddCategoryForm from "./Category/AddCategoryForm";
+import { CommentsList } from "./Comments/CommentsList";
 import DeleteTagForm from "./Tags/DeleteTagForm";
 import AddCategory from "./Category/AddCategory";
 import { EditCategory } from "./Category/EditCategory";
@@ -26,8 +28,6 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/" exact>
           {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
         </Route>
-
-
         <Route path="/Tag" exact>
           <TagList />
         </Route>
@@ -40,8 +40,6 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/Tag/delete/:tagId(\d+)">
           <DeleteTagForm />
         </Route>
-
-
         <Route exact path="/myposts" >
           {isLoggedIn ? <PostList allPosts={false} /> : <Redirect to="/login" />}
         </Route>
@@ -50,7 +48,10 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/post/details/:id">
           <PostDetails />
-        </Route >
+        </Route>
+        <Route path="/comments/:id">
+          <CommentsList />
+        </Route>
         <Route path="/post/create">
           <PostForm />
         </Route>
@@ -60,8 +61,6 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/post/delete/:postId(\d+)">
           <DeletePostForm />
         </Route>
-
-
         <Route path="/category" exact>
           <CategoryList />
         </Route>
@@ -74,21 +73,15 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/category/delete/:categoryId(\d+)">
           <DeleteCategory />
         </Route>
-
-
         <Route path="/login">
           <Login />
         </Route>
-
         <Route path="/userprofiles">
           <UserProfiles />
         </Route>
-
         <Route path="/register">
           <Register />
         </Route>
-
-
       </Switch>
     </main>
   );

@@ -69,19 +69,20 @@ export const addPost = (newPost) => {
 
 export const update = (editedPost) => {
     return getToken().then((token) => {
-    return fetch(`${apiUrl}/${editedPost.id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(editedPost)
-    }).then((res) => {
-      if (res.ok) {
-        return 
-      } else {
-        throw new Error("An unknown error occurred while trying to get posts.");
-      }
+        return fetch(`${apiUrl}/${editedPost.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedPost)
+        }).then((res) => {
+            if (res.ok) {
+                return
+            } else {
+                throw new Error("An unknown error occurred while trying to get posts.");
+            }
+        });
     });
-  });
 };
+
